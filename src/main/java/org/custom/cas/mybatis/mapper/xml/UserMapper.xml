@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.demo.core.mybatis.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="org.custom.cas.mybatis.model.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="create_time" property="create_time" jdbcType="TIMESTAMP"/>
+        <result column="last_online_time" property="last_online_time"
+                jdbcType="TIMESTAMP"/>
+        <result column="age" property="age" jdbcType="INT"/>
+        <result column="gender" property="gender" jdbcType="CHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id,nickname,username,password,create_time,last_online_time,age,gender,phone,status
+  </sql>
+
+    <select id="queryUsersByParams" parameterType="org.custom.cas.mybatis.model.User"
+            resultType="org.custom.cas.mybatis.model.User">
+        select * from user
+        <where>
+            <trim prefix="" suffix="" suffixOverrides="and">
+                <if test="id != null">
+                    id = #{id,jdbcType=INTEGER}
+                </if>
+                <if test="nickname != null">
+                    nickname=#{nickname,jdbcType=VARCHAR}
+                </if>
+                <if test="username != null">
+                    username=#{username,jdbcType=VARCHAR}
+                </if>
+                <if test="password != null">
+                    password=#{password,jdbcType=VARCHAR}
+                </if>
+                <if test="create_time != null">
+                    create_time=#{create_time,jdbcType=TIMESTAMP}
+                </if>
+                <if test="last_online_time != null">
+                    last_online_time=#{last_online_time,jdbcType=TIMESTAMP}
+                </if>
+                <if test="age != null">
+                    age=#{age,jdbcType=INTEGER}
+                </if>
+                <if test="gender != null">
+                    gender = #{gender,jdbcType=VARCHAR}
+                </if>
+                <if test="phone !=null">
+                    phone = #{phone,jdbcType=VARCHAR}
+                </if>
+                <if test="status != null">
+                    status=#{status,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </select>
+</mapper>
